@@ -207,7 +207,8 @@ Window{
                 }
                 Component {
                     id:tankScreen
-                    Tanksview {}
+                    //Tanksview {} 
+                    TanksviewOpt2 {}
                     
                 }
                 
