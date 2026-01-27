@@ -5,7 +5,7 @@ import QtQuick.Window 2.15
 import "Components"
 import "StartScreen"
 import "HomeScreen"
-
+import "TanksView"
 Window{
     id:root
     width:1024
@@ -36,6 +36,7 @@ Window{
                 }
                 width: parent.width / 9
                 color: "transparent"
+                
 
                 Column{
                 id:columnsBtn
@@ -56,6 +57,10 @@ Window{
                             fillMode: Image.PreserveAspectFit
                             source: assets + "tankes.png"
                         }
+                        MouseArea{
+                            anchors.fill:parent
+                            onClicked:{templeteStack.push(tankScreen)}
+                        }
                     }
                     Rectangle{
                         id:btthree
@@ -69,6 +74,10 @@ Window{
                             anchors.centerIn:parent
                             fillMode: Image.PreserveAspectFit
                             source: assets + "home.png"
+                        }
+                        MouseArea{
+                            anchors.fill:parent
+                            onClicked:{templeteStack.push(electricHome)}
                         }
                     }
                     Rectangle{
@@ -156,8 +165,27 @@ Window{
                         right:hourContent.left
                     }
                     color:"transparent"
-                    
-                 }
+                    Rectangle{
+                        id: modeNotification
+                        anchors{
+                            top:parent.top
+                            bottom: parent.bottom
+                            left:parent.left
+                        }
+                        width: parent.width / 2
+                        color: "transparent"
+          
+                        Text{
+                            text:"Modo Actual: " + (mode.Mode ? "Hibrido" :  "Electrico")
+                            anchors.centerIn:parent
+                            font.pixelSize:20
+                            color:"white"
+                            font.bold:true
+                                
+                            }
+                        }
+                    }
+        
             }
             Rectangle{
                 id:templateContent
@@ -176,6 +204,11 @@ Window{
                 Component{
                     id:electricHome
                     Homescreen {}
+                }
+                Component {
+                    id:tankScreen
+                    Tanksview {}
+                    
                 }
                 
             }

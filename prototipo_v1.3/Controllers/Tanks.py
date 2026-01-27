@@ -9,10 +9,10 @@ class TanksClass(QObject):
     def __init__(self, parent = None):
         super().__init__(parent)
         self._tanksLevel = [
-        { "text": "Tanque 1","value": 0},
-        { "text": "Tanque 2","value": 0},
-        { "text": "Tanque 3","value": 0},
-        { "text": "Tanque 4","value": 0}
+        { "text": "Tanque 1","value": 0,"temp":0,"press":0},
+        { "text": "Tanque 2","value": 0,"temp":0,"press":0},
+        { "text": "Tanque 3","value": 0,"temp":0,"press":0},
+        { "text": "Tanque 4","value": 0,"temp":0,"press":0}
 
         ]
         self._soc = 0.0
@@ -33,6 +33,9 @@ class TanksClass(QObject):
         
         for i in range(len(self._tanksLevel)):
             self._tanksLevel[i]["value"] = random.uniform(0.0, 1.0)
+            self._tanksLevel[i]["temp"] =random.randint(5,100)
+            self._tanksLevel[i]["press"]= random.randint(0,1000)
+            
         self.tanksChanged.emit()
 
     def getSoc(self):

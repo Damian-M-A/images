@@ -18,17 +18,22 @@ Rectangle {
         color:"transparent"
         Rectangle{
             id:btnChnge
-            width:parent.width * 0.7
+            width:79
             height:79
             radius:20
-            anchors.centerIn:parent
+            anchors{
+                bottom:parent.bottom
+                left:parent.left
+                right:parent.right
+                bottomMargin: 50
+            }
             color:"#15FFFFFF"
             border.color:"#32CC27"
             border.width:2
             Text{
                 id: lblchange
                 anchors.centerIn:parent
-                text:"MODO "  + (mode.getMode ? "HIBRIDO" :  "ELECTRICO")
+                text:"CAMBIAR A "  + (!mode.Mode ? "HIBRIDO" :  "ELECTRICO")
                 color: "#32cc27"
                 font.pixelSize:14
                 font.letterSpacing:1
@@ -38,7 +43,7 @@ Rectangle {
             MouseArea{
                 anchors.fill:parent
                 onClicked:{
-                    mode.setMode(!mode.getMode)
+                    mode.updateMode()
                 }
             }
         }
@@ -52,32 +57,16 @@ Rectangle {
             bottom: parent.bottom
         }
         color:"transparent"
+
         Rectangle{
-            id:textlbl
+            id:imageContent
             anchors{
                 top:parent.top
                 left:parent.left
                 right:parent.right
-                }
-            height:parent.width / 7
-            color:"transparent"
-            Text{
-                text:"Modo Actual: " + (mode.getMode ? "Hibrido" :  "Electrico")
-                anchors.centerIn:parent
-                font.pixelSize:20
-                color:"white"
-                font.bold:true
-                
+                topMargin: 30
             }
-        }
-        Rectangle{
-            id:imageContent
-            anchors{
-                top:textlbl.bottom
-                left:parent.left
-                right:parent.right
-            }
-            height:parent.height / 2
+            height:parent.height / 3
             color:"transparent"
 
             Image{
@@ -86,18 +75,43 @@ Rectangle {
                 height:150
                 anchors.centerIn:parent
                 fillMode:Image.PreserveAspectFit
-                source: mode.getMode ? assets + "h2car.png" : assets + "elecar.png"
+                source: mode.Mode ? assets + "h2car.png" : assets + "elecar.png"
             }
 
         }
         Rectangle{
-            id:alert
+            id:rectAutonomy
+            visible: mode.Mode ? true : false
             anchors{
                 top:imageContent.bottom
                 left:parent.left
                 right:parent.right
-                bottom:parent.bottom
+                
+                bottom:alert.top
+                
             }
+            color:"transparent"
+            ProgressBar{
+                id:autonomy
+                anchors.centerIn:parent
+                width:parent.height *0.9
+                height:parent.height
+                title: "Autonomia"
+                value: 200
+                maximum:600
+                
+            }
+            
+        }
+        Rectangle{
+            id:alert
+            anchors{
+                bottom:parent.bottom
+                left:parent.left
+                right:parent.right
+                
+            }
+            height: parent.height / 4
             color:"transparent"
             GridLayout{
                 id:grdalert
@@ -113,16 +127,17 @@ Rectangle {
                         Layout.fillHeight:true
                         color:"transparent"
                         radius:10
+                        border.color:modelData.active ? "white" : "transparent"
+                        border.width:2
                         
-                        border.width:1
                         ColumnLayout{
                             anchors.centerIn:parent
                             spacing:5
                             visible:modelData.active
 
                             Image{
-                                Layout.preferredWidth:40
-                                Layout.preferredHeight:40
+                                Layout.preferredWidth:20
+                                Layout.preferredHeight:20
                                 Layout.alignment:Qt.AlignHCenter
                                 fillMode:Image.PreserveAspectFit
                                 source:assets + modelData.image

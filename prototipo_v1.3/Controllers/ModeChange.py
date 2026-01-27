@@ -1,17 +1,23 @@
-from PySide6.QtCore import QObject, Property, Signal, Slot, QTimer, QDateTime
+from PySide6.QtCore import QObject, Property, Signal, Slot
 
 class ModeClass(QObject):
-    ModeChanged= Signal(bool)
+    modeChanged = Signal()
 
-    def __init__(self, parent = None):
+    def __init__(self, parent=None):
         super().__init__(parent)
-        self ._btnMode = False
+        self._btnMode = False # False: Eléctrico, True: Híbrido
 
+   
     def getMode(self):
         return self._btnMode
-    def setMode(self,value):
+
+   
+    def setMode(self, value):
         if self._btnMode != value:
             self._btnMode = value
-            self.ModeChanged.emit(self._btnMode)
-    Mode = Property(bool, getMode, setMode,notify = ModeChanged)
-       
+            self.modeChanged.emit()
+    @Slot()
+    def updateMode(self):
+        self.setMode(not self._btnMode)
+
+    Mode = Property(bool, getMode, setMode, notify=modeChanged)
