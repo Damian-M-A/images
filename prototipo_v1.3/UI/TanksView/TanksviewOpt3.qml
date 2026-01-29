@@ -63,6 +63,7 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 90
                     title: modelData.text 
+                    type: " %"
                     value: modelData.value * 100
                     textVisible: true
                 }
@@ -145,8 +146,8 @@ Rectangle {
                             
                             Column {
                                 Image{
-                                    width:30
-                                    height:30
+                                    width:50
+                                    height:50
                                     
                                     fillMode: Image.PreserveAspectFit
                                     
@@ -154,16 +155,7 @@ Rectangle {
                                             modelData.temp > 59 ? assets + "yellow-temperature.png":
                                              assets + "green-temperature.png"
                                 }
-                                Text { 
-                                    text: modelData.temp + "°C"
-                                    color: "white"
-                                    font { 
-                                        pixelSize: 18; 
-                                        bold: true;
-                                        family: "Monospace"
-                                         } 
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
+
                             }
 
                             
@@ -172,8 +164,8 @@ Rectangle {
                             
                             Column {
                                 Image{
-                                    width:25
-                                    height:25
+                                    width:50
+                                    height:50
                                     
                                     fillMode: Image.PreserveAspectFit
                                     
@@ -182,16 +174,7 @@ Rectangle {
                                              assets + "green-gauge.png"
                                     }
                                                         
-                                Text { 
-                                    text: modelData.press + " Kpa"
-                                    color: "white"
-                                    font {
-                                        pixelSize: 18; 
-                                        bold: true; 
-                                        family: "Monospace"
-                                         }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
+  
                             }
                         }
                         

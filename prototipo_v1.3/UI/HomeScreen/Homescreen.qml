@@ -136,21 +136,31 @@ Rectangle {
                             visible:modelData.active
 
                             Image{
-                                Layout.preferredWidth:20
-                                Layout.preferredHeight:20
+                                Layout.preferredWidth:40
+                                Layout.preferredHeight:40
                                 Layout.alignment:Qt.AlignHCenter
                                 fillMode:Image.PreserveAspectFit
                                 source:assets + modelData.image
                             }
-                            Text{
-                                text:modelData.text
-                                Layout.alignment:Qt.AlignHCenter
-                                color:"#FF2E63"
-                                font.pixelSize:11
-                                font.bold:true
-                            }
+
                         }
+                        MouseArea{
+                            anchors.fill:parent
+                            onClicked:{
+                                popups.open()
+                            }
+                        PopupWindow{
+                        id:popups
+                            title: "Advertencia"
+                            body: "Se a detectado " + modelData.text
+                            anchors.centerIn:Overlay.overlay
+
+                        }
+                           
+                        }
+
                     }
+                    
                 }
             }
 

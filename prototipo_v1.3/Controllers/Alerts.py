@@ -7,8 +7,8 @@ class AlertClass(QObject):
         self._alertState = [
                 {"text": "Nivel de H2 bajo", "image": "fuel-station.png", "active": True},
                 {"text": "Presión de H2 alta", "image": "gauge.png", "active": True},
-                {"text": "Temperatura H2 alta", "image": "temperature-control.png", "active": False},
-                {"text": "Fuga de H2", "image": "caution.png", "active": False}
+                {"text": "Temperatura H2 alta", "image": "temperature-control.png", "active": True},
+                {"text": "Fuga de H2", "image": "caution.png", "active": True}
             ]
     @Property(list, notify = alertStateChanged)
     def getAlerts(self):

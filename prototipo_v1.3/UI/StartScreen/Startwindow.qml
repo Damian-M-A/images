@@ -20,13 +20,13 @@ Rectangle {
     // Logo principal con animación
     Image {
         id: fidelli
-        width: 210
-        height: 240
+        width: 250
+        height: 290
         anchors.centerIn: parent
         scale: 0.1 // Comienza muy pequeño
         transformOrigin: Item.Center
         fillMode: Image.PreserveAspectFit
-        source: "https://static1.squarespace.com/static/68894be54c1349234a8208f6/t/688be9cd4ff4d815e355d0e1/1756924841262/"
+        source: assets+"fedelli-logo.png"
         opacity: 0 // Comienza invisible
 
         // Efecto de brillo alrededor del logo

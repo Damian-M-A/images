@@ -6,6 +6,7 @@ import "Components"
 import "StartScreen"
 import "HomeScreen"
 import "TanksView"
+import "MapView"
 Window{
     id:root
     width:1024
@@ -43,9 +44,26 @@ Window{
                     anchors.centerIn:parent
                     spacing: 20
 
-
                     Rectangle{
-                        id:bttwo
+                        id:btnmap
+                        width: 76
+                        height:76
+                        radius: 8
+                        border.color:"white"
+                        border.width : 2
+                        color:"transparent"
+                        Image{
+                            anchors.centerIn:parent
+                            fillMode: Image.PreserveAspectFit
+                            source: assets + "map.png"
+                        }
+                        MouseArea{
+                            anchors.fill:parent
+                            onClicked:{templeteStack.push(mapScreen)}
+                        }
+                    }
+                    Rectangle{
+                        id:taksInfo
                         width: 76
                         height:76
                         radius: 8
@@ -63,7 +81,7 @@ Window{
                         }
                     }
                     Rectangle{
-                        id:btthree
+                        id:btnhome
                         width: 76
                         height:76
                         radius: 8
@@ -81,7 +99,7 @@ Window{
                         }
                     }
                     Rectangle{
-                        id:btnfour
+                        id:btnsettings
                         width: 76
                         height:76
                         radius: 8
@@ -208,8 +226,12 @@ Window{
                 Component {
                     id:tankScreen
                     //Tanksview {} 
-                    TanksviewOpt2 {}
-                    
+                    //TanksviewOpt2 {}
+                    TanksviewOpt3 {}
+                }
+                Component{
+                    id:mapScreen
+                    Mapview {}
                 }
                 
             }
