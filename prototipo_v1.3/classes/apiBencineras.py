@@ -5,8 +5,8 @@ url = "https://api.cne.cl"
 token = ""
 
 hd = {}
-user = "a.z23384.12@gmail.com"
-passw = "Narut@123"
+user = ""
+passw = ""
 payload = {
     "email":user,
     "password":passw
