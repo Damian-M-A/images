@@ -5,12 +5,14 @@ url = "https://api.cne.cl"
 token = ""
 
 hd = {}
-user = ""
-passw = ""
+user = "a.z23384.12@gmail.com"
+passw = "Narut@123"
 payload = {
     "email":user,
     "password":passw
 }
+
+
 def obtenertoken(token):
     token = token
     valor = requests.post(f"{url}/api/login/",json=payload,headers =hd)
